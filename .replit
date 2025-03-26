@@ -1,4 +1,64 @@
-modules = ["nodejs-20"]
+modules = ["nodejs-20", "python-3.11"]
 
 [nix]
 channel = "stable-24_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Airflow Server"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "app"
+
+[[workflows.workflow]]
+name = "Airflow Server"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd /home/runner && python -m airflow webserver -p 5000 --host 0.0.0.0"
+waitForPort = 5000
+
+[[workflows.workflow]]
+name = "app"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd /home/runner/workspace && node -e \"console.log('Current project structure: Apache Airflow 3.x workflow pipeline with Supabase/Drizzle integration'); console.log('Main components:'); console.log('- Pipeline DAG defined in dags/swe_artifact_pipeline.py'); console.log('- Database schema defined in shared/schema.ts'); console.log('- Drizzle ORM setup in shared/db.ts'); console.log('- Supabase hook in plugins/hooks/supabase_hook.py'); console.log('- Various operators in plugins/operators/'); console.log('- Processors in scripts/processors/'); console.log('The workflow creates a pipeline from PRD → DDD Model → API Spec → TypeSpec → Zod/DB Schema with approval workflows.')\""
+
+[deployment]
+run = ["sh", "-c", "cd /home/runner && python -m airflow webserver -p 5000 --host 0.0.0.0"]
+
+[[ports]]
+localPort = 5000
+externalPort = 5000
+
+[[ports]]
+localPort = 8793
+externalPort = 3000
+
+[[ports]]
+localPort = 8794
+externalPort = 80
