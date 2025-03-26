@@ -1,0 +1,23 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "This project implements an Apache Airflow 3.x workflow pipeline for SWE artifact delivery with Supabase/Drizzle integration for persistence.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@typespec/http": "^0.67.1",
+    "@typespec/openapi": "^0.67.1",
+    "@typespec/rest": "^0.67.1",
+    "airflow": "^0.0.4",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.41.0",
+    "pg": "^8.14.1",
+    "postgres": "^3.4.5",
+    "zod": "^3.24.2"
+  }
+}
