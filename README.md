@@ -1,6 +1,6 @@
 # SWE Artifact Delivery Pipeline
 
-This project implements an Apache Airflow 3.x workflow pipeline for SWE artifact delivery with Supabase/Drizzle integration for persistence.
+This project implements an Apache Airflow 2.x workflow pipeline for SWE artifact delivery with Supabase/Drizzle integration for persistence.
 
 ## Overview
 
@@ -13,7 +13,7 @@ The pipeline orchestrates the following steps:
 
 ## Tech Stack
 
-- Apache Airflow 3.x (workflow orchestration)
+- Apache Airflow 2.x (workflow orchestration)
 - Node.js (operator implementation)
 - TypeSpec (API specification)
 - Zod (schema validation)
@@ -26,7 +26,7 @@ The pipeline orchestrates the following steps:
 ### Prerequisites
 
 - Node.js 16+
-- Apache Airflow 3.x
+- Apache Airflow 2.x
 - Supabase account and project
 
 ### Environment Variables
